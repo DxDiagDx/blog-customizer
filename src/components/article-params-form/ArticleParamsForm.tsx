@@ -102,9 +102,7 @@ export const ArticleParamsForm = ({ setParams }: TArticleParamsFormProps) => {
 							});
 						}}
 					/>
-
 					<Separator />
-
 					<Select
 						selected={formState.backgroundColor}
 						options={backgroundColors}
