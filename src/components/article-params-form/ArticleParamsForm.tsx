@@ -21,12 +21,22 @@ import {
 } from 'src/constants/articleProps';
 
 type TArticleParamsFormProps = {
-	setParams: (params: ArticleStateType) => void;
+	articleState: ArticleStateType;
+	setArticleState: (params: ArticleStateType) => void;
 };
 
-export const ArticleParamsForm = ({ setParams }: TArticleParamsFormProps) => {
+export const ArticleParamsForm = ({
+	articleState,
+	setArticleState,
+}: TArticleParamsFormProps) => {
 	const [isMenuOpen, setMenuOpen] = useState(false);
-	const [formState, setFormState] = useState(defaultArticleState);
+	const [formState, setFormState] = useState({
+		fontFamilyOption: articleState.fontFamilyOption,
+		fontSizeOption: articleState.fontSizeOption,
+		fontColor: articleState.fontColor,
+		backgroundColor: articleState.backgroundColor,
+		contentWidth: articleState.contentWidth,
+	});
 	const menuRef = useRef<HTMLFormElement | null>(null);
 
 	const handleMenuToggle = () => {
@@ -39,12 +49,12 @@ export const ArticleParamsForm = ({ setParams }: TArticleParamsFormProps) => {
 
 	const handleReset = () => {
 		setFormState(defaultArticleState);
-		setParams(defaultArticleState);
+		setArticleState(defaultArticleState);
 	};
 
 	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
-		setParams(formState);
+		setArticleState(formState);
 	};
 
 	useClose({
